@@ -1,0 +1,5 @@
+If:
+  PathMatch: Penguine/src/third_party/*.c
+
+Index:
+  Background: Skip
