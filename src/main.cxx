@@ -1,7 +1,6 @@
 #include "Penguine.hxx"
 #include "mathematics/Vec.hxx"
 #include "rendering/Mesh.hxx"
-#include <vector>
 
 class SoulsLike : public Penguine::Application
 {
@@ -9,16 +8,18 @@ class SoulsLike : public Penguine::Application
 	Penguine::Rendering::Shader shader;
 	Penguine::Rendering::Mesh	mesh;
 	SoulsLike()
-		: Penguine::Application({
+		: Penguine::Application(
 			  {
 				  {
-					  1280,
-					  720,
+					  {
+						  1280,
+						  720,
+					  },
 				  },
+				  false,
+				  "Hello",
 			  },
-			  false,
-			  "Hello",
-		  }),
+			  60),
 		  shader("../assets/shaders/Basic.vert", "../assets/shaders/Basic.frag"),
 		  mesh(
 			  {
@@ -32,11 +33,14 @@ class SoulsLike : public Penguine::Application
 	{
 	}
 
-	void Update(float deltaTime) override
+	void Update(double deltaTime) override
+	{
+	}
+
+	void Render() override
 	{
 		shader.Use();
-		shader.SetVec("ourColor", Penguine::Math::Vec<float, 3>({1.0f, 0.5f, 0.2f}));
-
+		shader.SetVec("ourColor", Penguine::Math::Vec<float, 3>({0.3f, 0.4f, 0.5f}));
 		mesh.Draw(shader);
 	}
 };
